@@ -118,93 +118,81 @@ const Lesson8 = () => {
       if (nextQuestion < questions.length) {
         setCurrentQuestion(nextQuestion);
       } else {
-        // Hết câu hỏi => game kết thúc
         alert("Chúc mừng! Bạn đã trả lời hết câu hỏi!");
-        // setGameOver(true);
       }
     } else {
-      // Sai => game over
-      alert("Bạn đã trả lời sai. Game Over!");
-      // setGameOver(true);
-      // Tạm thời reset game
-      setIsStarted(false);
-      setCurrentQuestion(0);
-      // Nếu muốn dừng nhạc
-      if (audioRef.current) {
-        audioRef.current.pause();
-        audioRef.current.currentTime = 0;
-      }
+      const modal = document.getElementById("my_modal_1");
+      modal.style.display = "block";
+      modal.showModal();
+      // setIsStarted(false);
+      // setCurrentQuestion(0);
+      // if (audioRef.current) {
+      //   audioRef.current.pause();
+      //   audioRef.current.currentTime = 0;
+      // }
     }
   };
 
   return (
-    <div className="w-full h-full bg-black text-white flex flex-col items-center">
-      {/* Audio nhạc nền (có thể thay link nhạc) */}
-      <audio ref={audioRef} src="https://www.mboxdrive.com/wwtbam-intro.mp3" loop />
-
-      {!isStarted ? (
-        // Màn hình chờ Start
-        <div
-          className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center"
-          style={{ backgroundImage: `url(${start_screen})` }}
-        >
-          <button
-            onClick={handleStartGame}
-            className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition bottom-200px mt-[600px]"
-          >
-            Start
-          </button>
-        </div>
-      ) : (
-        <div className="w-full h-screen  relative overflow-hidden text-white">
-          {/* Background */}
+    <>
+      <div className="w-full h-full bg-black text-white flex flex-col items-center">
+        <audio ref={audioRef} src="https://www.mboxdrive.com/wwtbam-intro.mp3" loop />
+        {!isStarted ? (
           <div
-            className="absolute inset-0 bg-cover bg-center"
-            style={{ backgroundImage: `url(${background_screen})` }}
-          />
-          {/* Overlay mờ để nội dung dễ nhìn hơn */}
-          <div className="absolute inset-0 bg-black/60" />
-
-          {/* Nội dung chính */}
-          <div className="relative z-10 flex h-full w-full">
-            {/* Cột câu hỏi & đáp án (chiếm phần lớn diện tích) */}
-            <div className="flex-1 flex flex-col justify-center mr-4">
-              <div className="text-2xl font-bold mb-6">
-                Câu {currentQuestion + 1}: {questions[currentQuestion].question}
+            className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${start_screen})` }}
+          >
+            <button
+              onClick={handleStartGame}
+              className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition bottom-200px mt-[700px]"
+            >
+              Bắt đầu
+            </button>
+          </div>
+        ) : (
+          <div className="w-full h-screen  relative overflow-hidden text-white">
+            <div
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ backgroundImage: `url(${background_screen})` }}
+            />
+            <div className="absolute inset-0 bg-black/60" />
+            <div className="relative z-10 flex h-full w-full">
+              <div className="flex-1 flex flex-col justify-center mr-4 px-20">
+                <div className="text-2xl font-bold mb-6">
+                  Câu {currentQuestion + 1}: {questions[currentQuestion].question}
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  {questions[currentQuestion].answers.map((ans, index) => (
+                    <button
+                      key={index}
+                      onClick={() => handleAnswerClick(ans)}
+                      className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
+                    >
+                      {ans.text}
+                    </button>
+                  ))}
+                </div>
               </div>
-              <div className="grid grid-cols-2 gap-4">
-                {questions[currentQuestion].answers.map((ans, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleAnswerClick(ans)}
-                    className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
-                  >
-                    {ans.text}
-                  </button>
-                ))}
+              <div className="w-64 bg-gray-800 bg-opacity-90 p-4 rounded flex flex-col justify-start">
+                <ul className="space-y-2">
+                  {moneyPyramid.map((m) => (
+                    <li
+                      key={m.id}
+                      className={`p-2 rounded ${m.id === questions.length - currentQuestion
+                          ? "bg-yellow-500 text-black font-bold"
+                          : "bg-gray-700"
+                        }`}
+                    >
+                      {m.amount}
+                    </li>
+                  ))}
+                </ul>
               </div>
-            </div>
-
-            {/* Cột hiển thị mức tiền (chiều rộng cố định) */}
-            <div className="w-64 bg-gray-800 bg-opacity-90 p-4 rounded flex flex-col justify-start">
-              <ul className="space-y-2">
-                {moneyPyramid.map((m) => (
-                  <li
-                    key={m.id}
-                    className={`p-2 rounded ${m.id === questions.length - currentQuestion
-                        ? "bg-yellow-500 text-black font-bold"
-                        : "bg-gray-700"
-                      }`}
-                  >
-                    {m.amount}
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+    </>
   );
 };
 
