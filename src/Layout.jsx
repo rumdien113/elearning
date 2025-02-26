@@ -5,7 +5,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen min-w-screen bg-gray-900 text-white">
       {/* Header */}
-      <header className="bg-blue-500 text-white p-4">
+      <header className="bg-blue-500 text-white">
         <h1>Elearning Header</h1>
       </header>
 

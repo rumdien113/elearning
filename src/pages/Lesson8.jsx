@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from "react";
+import start_screen from "../assets/images/start.png"
 
 const Lesson8 = () => {
   // Trạng thái: đã bấm start game hay chưa
@@ -23,15 +24,59 @@ const Lesson8 = () => {
       ],
     },
     {
-      question: "Việt Nam có bao nhiêu dân tộc anh em?",
+      question: "Trang phục của dân tộc trong các bức ảnh là của dân tộc nào?",
       answers: [
-        { text: "45", correct: false },
-        { text: "54", correct: true },
-        { text: "64", correct: false },
-        { text: "63", correct: false },
+        { text: "Ê-đê", correct: true },
+        { text: "Ba-na", correct: false },
+        { text: "Ja-rai", correct: false },
+        { text: "Tày", correct: false },
       ],
     },
-    // Thêm nhiều câu hỏi khác...
+    {
+      question: "Hình thức văn xuôi tự sự (có quy mô lớn, sử dụng ngôn ngữ có vần nhịp, kiểu văn xuôi, văn vần hoặc kết hợp cả hai) là:",
+      answers: [
+        { text: "Thần Thoại", correct: false },
+        { text: "Sử thi", correct: true },
+        { text: "Cổ Tích", correct: false },
+        { text: "Truyền Thuyết", correct: false },
+      ],
+    },
+    {
+      question: "Xưng hô “Diêng” trong sử thi Đăm Săn có nghĩa là gì?",
+      answers: [
+        { text: "Kẻ Thù ", correct: false },
+        { text: "Vợ Chồng ", correct: false },
+        { text: "Bạn Bè Thân Thiết, Gắn Bó Như Anh Em", correct: true },
+        { text: "Anh Em Trong Gia Đình", correct: false },
+      ],
+    },
+    {
+      question: "Hành trình đến nhà Nữ Thần Mặt Trời của Đăm Săn trải qua:",
+      answers: [
+        { text: "Nhiều Điều Thú Vị", correct: false },
+        { text: "Nhàn Nhã", correct: false },
+        { text: "Nhiều Khó Khăn", correct: true },
+        { text: "Thuận Lợi", correct: false },
+      ],
+    },
+    {
+      question: "Đăm Par Kvây đã làm gì khi Đăm Săn có ý định  đi bắt Nữ thần Mặt Trời về làm vợ?",
+      answers: [
+        { text: "Cổ vũ Đăm Săn hãy cố gắng hết sức mình để cưới được Nữ Thần Mặt Trời", correct: false },
+        { text: "Suy nghĩ, đưa ra một số kế hoạch và khuyên Đăm Săn làm theo", correct: false },
+        { text: "Ngăn cảm Đăm Săn không nên mạo hiểm đi vào chốn rừng thiên nước độc", correct: true },
+        { text: "Im lặng. Không khuyên nhủ gì", correct: false },
+      ],
+    },
+    {
+      question: "Phản ứng của Đăm Săn khi Đăm Par Kvây ngăn cản:",
+      answers: [
+        { text: "Lo Lắng, Phản Ứng Yếu Đuối", correct: false },
+        { text: "Buồn Bã, Do Dự, Băng Khoăng", correct: false },
+        { text: "Quyết Tâm Đi, Không Sợ Hãi", correct: true },
+        { text: "Không Bộc Lộ Thái Độ Gì", correct: false },
+      ],
+    },
   ];
 
   // Mảng mức tiền thưởng
@@ -43,14 +88,6 @@ const Lesson8 = () => {
     { id: 5, amount: "$1,000" },
     { id: 6, amount: "$2,000" },
     { id: 7, amount: "$4,000" },
-    { id: 8, amount: "$8,000" },
-    { id: 9, amount: "$16,000" },
-    { id: 10, amount: "$32,000" },
-    { id: 11, amount: "$64,000" },
-    { id: 12, amount: "$125,000" },
-    { id: 13, amount: "$250,000" },
-    { id: 14, amount: "$500,000" },
-    { id: 15, amount: "$1,000,000" },
   ].reverse(); 
   // reverse() để hiển thị từ trên xuống: 1 triệu ở trên cùng
 
@@ -100,17 +137,19 @@ const Lesson8 = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-black text-white flex flex-col items-center p-4">
+    <div className="w-full h-full bg-black text-white flex flex-col items-center">
       {/* Audio nhạc nền (có thể thay link nhạc) */}
       <audio ref={audioRef} src="https://www.mboxdrive.com/wwtbam-intro.mp3" loop />
 
       {!isStarted ? (
         // Màn hình chờ Start
-        <div className="flex flex-col items-center justify-center">
-          <h1 className="text-2xl mb-4">AI LÀ TRIỆU PHÚ</h1>
+        <div 
+          className="flex flex-col  items-center justify-center w-full h-full bg-cover bg-center"
+          style={{ backgroundImage: `url(${start_screen})` }}
+        >
           <button
             onClick={handleStartGame}
-            className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition"
+            className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition bottom-200px mt-[600px]"
           >
             Start
           </button>
