@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import start_screen from "../assets/images/start.png"
+import background_screen from "../assets/images/background.png"
 
 const Lesson8 = () => {
   // Trạng thái: đã bấm start game hay chưa
@@ -81,14 +82,14 @@ const Lesson8 = () => {
 
   // Mảng mức tiền thưởng
   const moneyPyramid = [
-    { id: 1, amount: "$100" },
-    { id: 2, amount: "$200" },
-    { id: 3, amount: "$300" },
+    { id: 1, amount: "$4,000" },
+    { id: 2, amount: "$2,000" },
+    { id: 3, amount: "$1000" },
     { id: 4, amount: "$500" },
-    { id: 5, amount: "$1,000" },
-    { id: 6, amount: "$2,000" },
-    { id: 7, amount: "$4,000" },
-  ].reverse(); 
+    { id: 5, amount: "$300" },
+    { id: 6, amount: "$200" },
+    { id: 7, amount: "$100" },
+  ];
   // reverse() để hiển thị từ trên xuống: 1 triệu ở trên cùng
 
   // Audio ref cho nhạc nền (nếu muốn tự động phát khi vào trang)
@@ -143,8 +144,8 @@ const Lesson8 = () => {
 
       {!isStarted ? (
         // Màn hình chờ Start
-        <div 
-          className="flex flex-col  items-center justify-center w-full h-full bg-cover bg-center"
+        <div
+          className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center"
           style={{ backgroundImage: `url(${start_screen})` }}
         >
           <button
@@ -155,42 +156,51 @@ const Lesson8 = () => {
           </button>
         </div>
       ) : (
-        // Màn hình câu hỏi
-        <div className="flex w-full max-w-5xl mt-4">
-          {/* Phần câu hỏi & đáp án */}
-          <div className="flex-1 flex flex-col justify-between">
-            <div className="text-xl mb-4">
-              Câu {currentQuestion + 1}: {questions[currentQuestion].question}
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              {questions[currentQuestion].answers.map((ans, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleAnswerClick(ans)}
-                  className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
-                >
-                  {ans.text}
-                </button>
-              ))}
-            </div>
-          </div>
+        <div className="w-full h-screen  relative overflow-hidden text-white">
+          {/* Background */}
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{ backgroundImage: `url(${background_screen})` }}
+          />
+          {/* Overlay mờ để nội dung dễ nhìn hơn */}
+          <div className="absolute inset-0 bg-black/60" />
 
-          {/* Cột hiển thị mức tiền */}
-          <div className="w-48 ml-8 bg-gray-800 p-4 rounded">
-            <ul className="space-y-2">
-              {moneyPyramid.map((m) => (
-                <li
-                  key={m.id}
-                  className={`p-2 rounded ${
-                    m.id === questions.length - currentQuestion
-                      ? "bg-yellow-500 text-black font-bold"
-                      : "bg-gray-700"
-                  }`}
-                >
-                  {m.amount}
-                </li>
-              ))}
-            </ul>
+          {/* Nội dung chính */}
+          <div className="relative z-10 flex h-full w-full">
+            {/* Cột câu hỏi & đáp án (chiếm phần lớn diện tích) */}
+            <div className="flex-1 flex flex-col justify-center mr-4">
+              <div className="text-2xl font-bold mb-6">
+                Câu {currentQuestion + 1}: {questions[currentQuestion].question}
+              </div>
+              <div className="grid grid-cols-2 gap-4">
+                {questions[currentQuestion].answers.map((ans, index) => (
+                  <button
+                    key={index}
+                    onClick={() => handleAnswerClick(ans)}
+                    className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
+                  >
+                    {ans.text}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Cột hiển thị mức tiền (chiều rộng cố định) */}
+            <div className="w-64 bg-gray-800 bg-opacity-90 p-4 rounded flex flex-col justify-start">
+              <ul className="space-y-2">
+                {moneyPyramid.map((m) => (
+                  <li
+                    key={m.id}
+                    className={`p-2 rounded ${m.id === questions.length - currentQuestion
+                        ? "bg-yellow-500 text-black font-bold"
+                        : "bg-gray-700"
+                      }`}
+                  >
+                    {m.amount}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
       )}
