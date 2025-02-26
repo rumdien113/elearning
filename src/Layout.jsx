@@ -4,21 +4,16 @@ import { Link, Outlet } from 'react-router-dom';
 const Layout = () => {
   return (
     <div className="flex flex-col min-h-screen min-w-screen bg-gray-900 text-white">
-      {/* Header */}
       <header className="bg-blue-500 text-white">
         <h1>Elearning Header</h1>
       </header>
-
-      {/* Nội dung chính và navigation */}
       <div className="flex flex-1">
-        {/* Màn hình chính */}
-        <main className="flex-1 p-4">
-          <Outlet /> {/* Nội dung thay đổi theo route */}
+        <main className="flex-1">
+          <Outlet /> 
         </main>
-
-        <nav className="w-64 bg-gray-200 p-4">
+        <nav className="w-64 bg-gray-200 p-4 flex flex-col">
+          <img src="https://placehold.co/50x50" alt="avatar" className="rounded-full" />
           <ul>
-            <li className="mb-2"><Link to="/">Trang chủ</Link></li>
             <li className="mb-2"><Link to="/lesson1">Tác giả</Link></li>
             <li className="mb-2"><Link to="/lesson2">Tóm tắt sử thi Đăm Săn</Link></li>
             <li className="mb-2"><Link to="/lesson3">Video truyện tranh tự vẽ về bộ sử thi</Link></li>
@@ -28,8 +23,10 @@ const Layout = () => {
             <li className="mb-2"><Link to="/lesson7">Video mô hình múa rối nước</Link></li>
             <li className="mb-2"><Link to="/lesson8">Gameshow Ai là triệu phú</Link></li>
           </ul>
-          <button className="bg-blue-500 text-white p-2 mt-4">
-            <Link to="/">Quay lại</Link>
+          <button className="p-3 mt-72">
+            <Link to="/" className='bg-blue-500 text-white p-2 rounded-md'>
+              Trở về trang chủ
+            </Link>
           </button>
         </nav>
       </div>

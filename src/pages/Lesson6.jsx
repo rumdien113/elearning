@@ -1,10 +1,11 @@
-import React from 'react';
+import Video_6 from '../assets/videos/Video_6.mp4';
 
 const Lesson6 = () => {
   return (
     <div>
-      <h2>Khóa Học</h2>
-      <p>Nội dung của khóa học sẽ hiển thị ở đây.</p>
+      <video controls className='w-full h-max-screen'>
+        <source src={Video_6} type="video/mp4" />
+      </video>
     </div>
   );
 };
