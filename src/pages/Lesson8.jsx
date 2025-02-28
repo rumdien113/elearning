@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import start_screen from "../assets/images/start.png"
 import background_screen from "../assets/images/background.png"
+import { Toaster, toast } from "react-hot-toast";
 
 const Lesson8 = () => {
   // Trạng thái: đã bấm start game hay chưa
@@ -12,6 +13,8 @@ const Lesson8 = () => {
   // Trạng thái kết thúc game hoặc số tiền đạt được có thể bổ sung sau
   // const [earnedMoney, setEarnedMoney] = useState("$0");
   // const [gameOver, setGameOver] = useState(false);
+
+  const [showModal, setShowModal] = useState(false);
 
   // Mảng câu hỏi minh hoạ
   const questions = [
@@ -116,26 +119,89 @@ const Lesson8 = () => {
       // Nếu đúng => sang câu tiếp theo
       const nextQuestion = currentQuestion + 1;
       if (nextQuestion < questions.length) {
-        setCurrentQuestion(nextQuestion);
+        toast.success("Chúc mừng! Bạn đã trả lời đúng.");
+        // Xoá câu toast trước
+        setTimeout(() => {
+          toast.dismiss();
+        }, 500);
+        // Delay rồi mới hiện câu toast tiếp theo
+        setTimeout(() => {
+          toast.success("Câu hỏi tiếp theo...");
+        }, 1000);
+        // Delay 1s rồi mới chuyển câu hỏi
+        setTimeout(() => {
+          setCurrentQuestion(nextQuestion);
+        }, 1500);
+        // setCurrentQuestion(nextQuestion);
       } else {
-        alert("Chúc mừng! Bạn đã trả lời hết câu hỏi!");
+        toast.success("Chúc mừng! Bạn đã trả lời đúng hết câu hỏi.");
       }
     } else {
-      const modal = document.getElementById("my_modal_1");
-      modal.style.display = "block";
-      modal.showModal();
+      // alert("Bạn đã trả lời sai.");
+      // setGameOver(true);
+      // Tạm thời reset game
       // setIsStarted(false);
       // setCurrentQuestion(0);
-      // if (audioRef.current) {
-      //   audioRef.current.pause();
-      //   audioRef.current.currentTime = 0;
-      // }
+      document.getElementById('my_modal_1').showModal()
+      // Nếu muốn dừng nhạc
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.currentTime = 0;
+      }
     }
   };
 
   return (
     <>
+      <Toaster position="top-center" reverseOrder="false"/>
+      <dialog id="my_modal_1" className="modal bg-opacity-25">
+        <div className="modal-box">
+          <h3 className="font-bold text-2xl">
+            Game Over
+          </h3>
+          <p className="py-4">
+            <p className="text-xl">
+              Bạn đã trả lời sai. Bạn sẽ nhận được số tiền thưởng là: &nbsp;
+              {currentQuestion === 0
+                ? "$0"
+                : moneyPyramid.find((m) => m.id === questions.length - currentQuestion).amount}
+            </p>
+            <p className="text-xl">
+              Bạn có muốn chơi lại không?
+            </p>
+          </p>
+          <div className="modal-action">
+            <form method="dialog" className="space-x-5">
+              <button className="btn">
+                Đóng
+              </button>
+              <button 
+                className="btn"
+                onClick={() => {
+                  setIsStarted(false);
+                  setCurrentQuestion(0);
+                  document.getElementById('my_modal_1').close()
+                }}
+              >
+                Chơi lại
+              </button>
+            </form>
+          </div>
+        </div>
+      </dialog>
       <div className="w-full h-full bg-black text-white flex flex-col items-center">
+        <dialog id="my_modal_1" className="modal">
+          <div className="modal-box">
+            <h3 className="font-bold text-lg">Hello!</h3>
+            <p className="py-4">Press ESC key or click the button below to close</p>
+            <div className="modal-action">
+              <form method="dialog">
+                {/* if there is a button in form, it will close the modal */}
+                <button className="btn">Close</button>
+              </form>
+            </div>
+          </div>
+        </dialog>
         <audio ref={audioRef} src="https://www.mboxdrive.com/wwtbam-intro.mp3" loop />
         {!isStarted ? (
           <div
@@ -150,47 +216,47 @@ const Lesson8 = () => {
             </button>
           </div>
         ) : (
-          <div className="w-full h-screen  relative overflow-hidden text-white">
-            <div
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ backgroundImage: `url(${background_screen})` }}
-            />
-            <div className="absolute inset-0 bg-black/60" />
-            <div className="relative z-10 flex h-full w-full">
-              <div className="flex-1 flex flex-col justify-center mr-4 px-20">
-                <div className="text-2xl font-bold mb-6">
-                  Câu {currentQuestion + 1}: {questions[currentQuestion].question}
+            <div className="w-full h-screen  relative overflow-hidden text-white">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${background_screen})` }}
+              />
+              <div className="absolute inset-0 bg-black/60" />
+              <div className="relative z-10 flex h-full w-full">
+                <div className="flex-1 flex flex-col justify-center mr-4 px-32">
+                  <div className="text-2xl font-bold mb-6">
+                    Câu {currentQuestion + 1}: {questions[currentQuestion].question}
+                  </div>
+                  <div className="grid grid-cols-2 gap-4 mt-3">
+                    {questions[currentQuestion].answers.map((ans, index) => (
+                      <button
+                        key={index}
+                        onClick={() => handleAnswerClick(ans)}
+                        className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
+                      >
+                        {ans.text}
+                      </button>
+                    ))}
+                  </div>
                 </div>
-                <div className="grid grid-cols-2 gap-4">
-                  {questions[currentQuestion].answers.map((ans, index) => (
-                    <button
-                      key={index}
-                      onClick={() => handleAnswerClick(ans)}
-                      className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
-                    >
-                      {ans.text}
-                    </button>
-                  ))}
+                <div className="w-64 bg-gray-800 bg-opacity-90 p-4 rounded flex flex-col justify-start">
+                  <ul className="space-y-2">
+                    {moneyPyramid.map((m) => (
+                      <li
+                        key={m.id}
+                        className={`p-2 rounded ${m.id === questions.length - currentQuestion
+? "bg-yellow-500 text-black font-bold"
+: "bg-gray-700"
+}`}
+                      >
+                        {m.amount}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-              <div className="w-64 bg-gray-800 bg-opacity-90 p-4 rounded flex flex-col justify-start">
-                <ul className="space-y-2">
-                  {moneyPyramid.map((m) => (
-                    <li
-                      key={m.id}
-                      className={`p-2 rounded ${m.id === questions.length - currentQuestion
-                          ? "bg-yellow-500 text-black font-bold"
-                          : "bg-gray-700"
-                        }`}
-                    >
-                      {m.amount}
-                    </li>
-                  ))}
-                </ul>
               </div>
             </div>
-          </div>
-        )}
+          )}
       </div>
     </>
   );
