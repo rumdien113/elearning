@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import start_screen from "../assets/images/start.png"
 import background_screen from "../assets/images/background.png"
 import { Toaster, toast } from "react-hot-toast";
+import HexagonRectangle from "./HexagonRectangle";
 
 const Lesson4 = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -208,28 +209,30 @@ const Lesson4 = () => {
             <div className="absolute inset-0 bg-black/60" />
             <div className="relative z-10 flex h-full w-full">
               <div className="flex-1 flex flex-col justify-center mr-4 px-32">
-                <div className="text-2xl font-bold mb-6">
+                <div className="text-3xl font-bold mb-96 flex w-full justify-center items-center">
                   Câu {currentQuestion + 1}: {questions[currentQuestion].question}
                 </div>
-                <div className="grid grid-cols-2 gap-4 mt-3">
+                <div className="grid grid-cols-2 gap-6 gap-y-6">
                   {questions[currentQuestion].answers.map((ans, index) => (
                     <button
                       key={index}
                       onClick={() => handleAnswerClick(ans)}
-                      className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
+                      className="bg-gray-700 py-2 px-4 rounded-md hover:bg-gray-600"
                     >
-                      {ans.text}
+                      <p className="text-2xl p-1">
+                        {ans.text}
+                      </p>
                     </button>
                   ))}
                 </div>
               </div>
-              <div className="w-64 bg-gray-800 bg-opacity-90 p-4 rounded flex flex-col justify-start">
+              <div className="w-64 bg-gray-800 bg-opacity-30 backdrop-blur-md p-4 rounded flex flex-col justify-start">
                 <ul className="space-y-2">
                   {moneyPyramid.map((m) => (
                     <li
                       key={m.id}
-                      className={`p-2 rounded ${m.id === questions.length - currentQuestion
-                        ? "bg-yellow-500 text-black font-bold"
+                      className={`p-3 rounded ${m.id === questions.length - currentQuestion
+                        ? "bg-yellow-500 text-black font-bold rounded-md"
                         : "bg-gray-700"
                         }`}
                     >
