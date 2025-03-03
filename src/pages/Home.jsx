@@ -22,8 +22,8 @@ const Home = () => {
         </div>
         {buttons.map((button, index) => {
           const angle = (index * 45) * (Math.PI / 180);
-          const x = Math.cos(angle) * 130;
-          const y = Math.sin(angle) * 130;
+          const x = Math.cos(angle) * 140;
+          const y = Math.sin(angle) * 140;
           return (
             <Link
               key={index}
