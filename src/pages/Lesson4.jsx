@@ -2,7 +2,8 @@ import { useState, useRef, useEffect } from "react";
 import start_screen from "../assets/images/start.png"
 import background_screen from "../assets/images/background.png"
 import { Toaster, toast } from "react-hot-toast";
-
+import ArowButton from "../components/button"
+import Question from "../components/question";
 const Lesson4 = () => {
   const [isStarted, setIsStarted] = useState(false);
 
@@ -192,12 +193,7 @@ const Lesson4 = () => {
             className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center"
             style={{ backgroundImage: `url(${start_screen})` }}
           >
-            <button
-              onClick={handleStartGame}
-              className="bg-blue-600 px-4 py-2 rounded hover:bg-blue-500 transition bottom-200px mt-[700px]"
-            >
-              Bắt đầu
-            </button>
+            <ArowButton text="Bắt đầu" onClick={handleStartGame} className="mt-[650px]  text-2xl bold" />
           </div>
         ) : (
           <div className="w-full h-screen  relative overflow-hidden text-white">
@@ -208,18 +204,18 @@ const Lesson4 = () => {
             <div className="absolute inset-0 bg-black/60" />
             <div className="relative z-10 flex h-full w-full">
               <div className="flex-1 flex flex-col justify-center mr-4 px-32">
-                <div className="text-2xl font-bold mb-6">
+                <Question>
                   Câu {currentQuestion + 1}: {questions[currentQuestion].question}
-                </div>
+                </Question>
                 <div className="grid grid-cols-2 gap-4 mt-3">
                   {questions[currentQuestion].answers.map((ans, index) => (
-                    <button
+                    <ArowButton
                       key={index}
                       onClick={() => handleAnswerClick(ans)}
                       className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
+                      text={ans.text}
                     >
-                      {ans.text}
-                    </button>
+                    </ArowButton>
                   ))}
                 </div>
               </div>

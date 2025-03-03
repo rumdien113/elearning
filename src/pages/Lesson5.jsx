@@ -1,9 +1,11 @@
+import Video_5 from '../assets/videos/Video_5.mp4';
 
 const Lesson5 = () => {
   return (
-    <div>
-      <h2>Khóa Học</h2>
-      <p>Nội dung của khóa học sẽ hiển thị ở đây.</p>
+    <div className='w-full h-full'>
+      <video controls className='flex w-full h-full'>
+        <source src={Video_5} type="video/mp4" />
+      </video>
     </div>
   );
 };
