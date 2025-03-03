@@ -8,13 +8,13 @@ const ArrowButton = ({ text, onClick, className = "" }) => {
         transition
         flex items-center
         justify-center
+        text-2xl
         ${className}
       `}
       style={{
-        // Màu nền của nút
-        backgroundColor: "#2563eb",
-        // Cắt hình dạng mũi tên
-        clipPath: "polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%)",
+        backgroundColor: "#2541eb",
+        // clipPath: "polygon(10% 0%, 90% 0%, 100% 50%, 90% 100%, 10% 100%, 0% 50%)",
+        clipPath: "polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%)",
       }}
       onClick={onClick}
     >

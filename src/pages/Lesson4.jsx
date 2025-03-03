@@ -2,7 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import start_screen from "../assets/images/start.png"
 import background_screen from "../assets/images/background.png"
 import { Toaster, toast } from "react-hot-toast";
-import ArowButton from "../components/button"
+import ArrowButton from "../components/button"
 import Question from "../components/question";
 const Lesson4 = () => {
   const [isStarted, setIsStarted] = useState(false);
@@ -150,17 +150,11 @@ const Lesson4 = () => {
               Bạn đã trả lời sai. Bạn sẽ nhận được số tiền thưởng là: &nbsp;
               {currentQuestion === 0
                 ? "$0"
-                : moneyPyramid.find((m) => m.id === questions.length - currentQuestion).amount}
-            </p>
-            <p className="text-xl">
-              Bạn có muốn chơi lại không?
+                : moneyPyramid.find((m) => m.id === questions.length - currentQuestion + 1).amount}
             </p>
           </p>
           <div className="modal-action">
             <form method="dialog" className="space-x-5">
-              <button className="btn">
-                Đóng
-              </button>
               <button
                 className="btn"
                 onClick={() => {
@@ -176,25 +170,13 @@ const Lesson4 = () => {
         </div>
       </dialog>
       <div className="w-full h-full bg-black text-white flex flex-col items-center">
-        <dialog id="my_modal_1" className="modal">
-          <div className="modal-box">
-            <h3 className="font-bold text-lg">Hello!</h3>
-            <p className="py-4">Press ESC key or click the button below to close</p>
-            <div className="modal-action">
-              <form method="dialog">
-                {/* if there is a button in form, it will close the modal */}
-                <button className="btn">Close</button>
-              </form>
-            </div>
-          </div>
-        </dialog>
         <audio ref={audioRef} src="https://www.mboxdrive.com/wwtbam-intro.mp3" loop />
         {!isStarted ? (
           <div
             className="flex flex-col items-center justify-center w-full h-full bg-cover bg-center"
             style={{ backgroundImage: `url(${start_screen})` }}
           >
-            <ArowButton text="Bắt đầu" onClick={handleStartGame} className="mt-[650px]  text-2xl bold" />
+            <ArrowButton text="Bắt đầu" onClick={handleStartGame} className="mt-[650px]  text-2xl bold" />
           </div>
         ) : (
           <div className="w-full h-screen  relative overflow-hidden text-white">
@@ -208,15 +190,15 @@ const Lesson4 = () => {
                 <Question>
                   Câu {currentQuestion + 1}: {questions[currentQuestion].question}
                 </Question>
-                <div className="grid grid-cols-2 gap-4 mt-3">
+                <div className="grid grid-cols-2 gap-4 mt-[530px]">
                   {questions[currentQuestion].answers.map((ans, index) => (
-                    <ArowButton
+                    <ArrowButton
                       key={index}
                       onClick={() => handleAnswerClick(ans)}
                       className="bg-gray-700 py-2 px-4 rounded hover:bg-gray-600"
                       text={ans.text}
                     >
-                    </ArowButton>
+                    </ArrowButton>
                   ))}
                 </div>
               </div>
