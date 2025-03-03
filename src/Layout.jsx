@@ -4,7 +4,7 @@ const Layout = () => {
   return (
     <div className="flex flex-col h-screen min-w-screen bg-gray-900 text-white">
       <header className="bg-blue-500 text-white">
-        <h1>Elearning Header</h1>
+        <h1>THIẾT BỊ DẠY HỌC - MÔN GIÁO DỤC ĐỊA PHƯƠNG 10</h1>
       </header>
       <div className="flex flex-1">
         <main className="flex-1">

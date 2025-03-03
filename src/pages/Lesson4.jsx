@@ -15,21 +15,48 @@ const Lesson4 = () => {
 
   const questions = [
     {
-      question: "Đâu là bộ sử thi của dân tộc Ê Đê?",
+      question: "Tác giả Nguyễn Văn Huyên giữ chức Bộ trưởng Bộ Giáo dục từ năm nào?",
+      answers: [
+        { text: "1945", correct: false },
+        { text: "1946", correct: true },
+        { text: "1950", correct: false },
+        { text: "1955", correct: false },
+      ],
+    },
+    {
+      question: "Văn bản Nghệ thuật truyền thống của người Việt được trích từ cuốn sách nào?",
+      answers: [
+        { text: "Văn minh Việt Nam", correct: true },
+        { text: "Nghệ thuật học Việt Nam", correct: false },
+        { text: "Lịch sử văn minh Việt Nam", correct: false },
+        { text: "Lịch sử Việt Nam", correct: false },
+      ],
+    },
+    {
+      question: "Yếu tố nào được sử dụng trong chi tiết “đồ nữ trang được chế tác với một sự tinh tế và đa dạng vô song”?",
+      answers: [
+        { text: "Tự sự", correct: false },
+        { text: "Biểu cảm", correct: true },
+        { text: "Miêu tả", correct: false },
+        { text: "Nghị luận", correct: false },
+      ],
+    },
+    {
+      question: "Đâu là bộ sử thi của dân tộc Ê-Đê?",
       answers: [
         { text: "Đẻ đất đẻ nước", correct: false },
         { text: "Đăm Săn", correct: true },
         { text: "Cây nêu thần", correct: false },
-        { text: "Giống nhà làm mồ", correct: false },
+        { text: "Giông nhà làm mồ", correct: false },
       ],
     },
     {
       question: "Trang phục của dân tộc trong các bức ảnh là của dân tộc nào?",
       answers: [
-        { text: "Ê-đê", correct: true },
-        { text: "Ba-na", correct: false },
-        { text: "Ja-rai", correct: false },
-        { text: "Tày", correct: false },
+        { text: "Ê ĐÊ", correct: true },
+        { text: "BA NA", correct: false },
+        { text: "JA RAI", correct: false },
+        { text: "TÀY", correct: false },
       ],
     },
     {
@@ -44,8 +71,8 @@ const Lesson4 = () => {
     {
       question: "Xưng hô “Diêng” trong sử thi Đăm Săn có nghĩa là gì?",
       answers: [
-        { text: "Kẻ Thù ", correct: false },
-        { text: "Vợ Chồng ", correct: false },
+        { text: "Kẻ Thù", correct: false },
+        { text: "Vợ Chồng", correct: false },
         { text: "Bạn Bè Thân Thiết, Gắn Bó Như Anh Em", correct: true },
         { text: "Anh Em Trong Gia Đình", correct: false },
       ],
@@ -53,28 +80,28 @@ const Lesson4 = () => {
     {
       question: "Hành trình đến nhà Nữ Thần Mặt Trời của Đăm Săn trải qua:",
       answers: [
-        { text: "Nhiều Điều Thú Vị", correct: false },
-        { text: "Nhàn Nhã", correct: false },
-        { text: "Nhiều Khó Khăn", correct: true },
-        { text: "Thuận Lợi", correct: false },
+        { text: "Nhiều điều thú vị", correct: false },
+        { text: "Nhiều may mắn", correct: false },
+        { text: "Nhiều khó khăn", correct: true },
+        { text: "Nhiều thuận lợi", correct: false },
       ],
     },
     {
-      question: "Đăm Par Kvây đã làm gì khi Đăm Săn có ý định  đi bắt Nữ thần Mặt Trời về làm vợ?",
+      question: "Đăm Par Kvây đã làm gì khi Đăm Săn có ý định đi bắt Nữ Thần Mặt Trời về làm vợ?",
       answers: [
         { text: "Cổ vũ Đăm Săn hãy cố gắng hết sức mình để cưới được Nữ Thần Mặt Trời", correct: false },
         { text: "Suy nghĩ, đưa ra một số kế hoạch và khuyên Đăm Săn làm theo", correct: false },
-        { text: "Ngăn cảm Đăm Săn không nên mạo hiểm đi vào chốn rừng thiên nước độc", correct: true },
+        { text: "Ngăn cản Đăm Săn không nên mạo hiểm đi vào chốn rừng thiêng nước độc", correct: true },
         { text: "Im lặng. Không khuyên nhủ gì", correct: false },
       ],
     },
     {
       question: "Phản ứng của Đăm Săn khi Đăm Par Kvây ngăn cản:",
       answers: [
-        { text: "Lo Lắng, Phản Ứng Yếu Đuối", correct: false },
-        { text: "Buồn Bã, Do Dự, Băng Khoăng", correct: false },
-        { text: "Quyết Tâm Đi, Không Sợ Hãi", correct: true },
-        { text: "Không Bộc Lộ Thái Độ Gì", correct: false },
+        { text: "Lo lắng, phản ứng yếu đuối", correct: false },
+        { text: "Buồn bã, do dự, băn khoăn", correct: false },
+        { text: "Quyết tâm đi, không sợ hãi", correct: true },
+        { text: "Không bộc lộ thái độ gì", correct: false },
       ],
     },
   ];
