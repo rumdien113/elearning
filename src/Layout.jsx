@@ -17,7 +17,7 @@ const Layout = () => {
             <li className='hover:bg-gray-300'>
               <Link to="/lesson1">
                 <li className="flex justify-start items-center">
-                  HS vẽ tranh &quot;Đăm Săn đi bắt Nữ Thần Mặt Trời&quot;
+                  HS vex tranh &quot;Đăm Săn đi bắt Nữ Thần&quot;
                 </li>
               </Link>
             </li>

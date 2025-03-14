@@ -4,10 +4,9 @@ import huongdan from '../assets/images/huongdan.png';
 const Introduce = () => {
   return (
     <div
-      className="w-full h-full relative items-center justify-center"
+      className="relative flex items-center justify-center h-full bg-cover bg-center"
       style={{ backgroundImage: `url(${huongdan})` }}
     >
-      <img src={huongdan} alt="huongdan" className='w-full h-full'/>
     </div>
   )
 }
