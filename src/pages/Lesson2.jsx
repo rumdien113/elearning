@@ -4,7 +4,7 @@ const Lesson2 = () => {
       <iframe
         width="560"
         height="315"
-        src="https://www.youtube.com/embed/DieCQwqqVNk?si=qJCnVzL5WIvaKDk3"
+        src="https://drive.google.com/file/d/1j7e0SjiM-7hjXfH393ohon1PGYy0qvtG/preview"
         title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
         className="w-full h-full"
         referrerPolicy="strict-origin-when-cross-origin" allowfullscreen

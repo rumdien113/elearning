@@ -6,3 +6,6 @@ export { default as Lesson5 } from "./Lesson5";
 export { default as Lesson6 } from "./Lesson6";
 export { default as Lesson7 } from "./Lesson7";
 export { default as Lesson8 } from "./Lesson8";
+export { default as Home } from "./Home";
+export { default as Intro } from "./Intro";
+export { default as Introduce } from "./Introduce";
