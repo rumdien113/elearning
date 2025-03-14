@@ -32,4 +32,11 @@ body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  zoom: 0.9;
+}
+
+@media screen and (min-resolution: 150dpi) {
+  .container {
+    font-size: 1.2rem; /* Tăng kích thước chữ cho màn hình có DPI cao */
+  }
 }
